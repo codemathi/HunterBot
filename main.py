@@ -19,9 +19,12 @@ async def on_message(msg):
         return
         
     try:
-        if msg.content.startwith('$!join'): 
+        if msg.content.startwith('$!join'):
+                        await msg.channel.send('Trying')
             if msg.voice_client is None:
+                                await msg.channel.send('Client')
                 if msg.author.voice:
+                                        await msg.channel.send('Connected')
                     await msg.author.voice.channel.connect()
                 else:
                     await msg.channel.send('You are not connected to a voice channel.')
