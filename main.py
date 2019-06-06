@@ -6,7 +6,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
         print('We heve logged in as {0.user}'.format(client))
-        activity = discord.Game(name="Beta BOT v0.1")
+        activity = discord.Game(name="Beta BOT")
         await client.change_presence(status=discord.Status.idle, activity=activity)
 #Message on delete
 @client.event
@@ -18,9 +18,15 @@ async def on_message_delete(message):
 async def on_message(msg):
 		if message.author == client.user:
 			return
-		if message.content.startwith('$!join'): 
-			await msg.author.voice.channel.connect()
-
+        try:
+    		if message.content.startwith('$!join'): 
+                if msg.voice_client is None:
+                    if msg.author.voice:
+    			         await msg.author.voice.channel.connect()
+                    else:
+                         await msg.channel.send('You are not connected to a voice channel.')
+        except:
+            await msg.channel.send('Aint')
 @client.event
 async def on_member_join(self, member):
         guild = member.guild
