@@ -6,7 +6,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
         print('We heve logged in as {0.user}'.format(client))
-        activity = discord.Game(name="$talk to me <3")
+        activity = discord.Game(name="Beta BOT")
         await client.change_presence(status=discord.Status.idle, activity=activity)
 #Message on delete
 @client.event
