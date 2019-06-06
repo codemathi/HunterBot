@@ -1,4 +1,5 @@
 import discord
+import os
 
 client = discord.Client()
 
@@ -13,4 +14,4 @@ async def on_message_delete(message):
         await message.channel.send('Message deleted: ')
         await message.channel.send('{}: {}'.format(message.author.mention, message.content))
                 
-client.run(BOT_TOKEN)
+client.run(str(os.environ.get('BOT_TOKEN')))
