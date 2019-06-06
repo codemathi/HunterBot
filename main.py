@@ -19,7 +19,7 @@ async def on_message(msg):
 		if message.author == client.user:
 			return
         try:
-    		if message.content.startwith('$!join'): 
+    		if mmsg.content.startwith('$!join'): 
                 if msg.voice_client is None:
                     if msg.author.voice:
     			         await msg.author.voice.channel.connect()
