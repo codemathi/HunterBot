@@ -12,6 +12,6 @@ async def on_message_delete(message):
                 return
 
         await message.channel.send('Message deleted: ')
-        await message.channel.send('{}: {} 123'.format(message.author.mention, message.content))
+        await message.channel.send('{}: {}'.format(message.author.mention, message.content))
                 
 client.run(str(os.environ.get('BOT_TOKEN')))
