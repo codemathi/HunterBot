@@ -6,14 +6,26 @@ client = discord.Client()
 @client.event
 async def on_ready():
         print('We heve logged in as {0.user}'.format(client))
-        activity = discord.Game(name="Beta BOT")
+        activity = discord.Game(name="Beta BOT v0.1")
         await client.change_presence(status=discord.Status.idle, activity=activity)
 #Message on delete
 @client.event
 async def on_message_delete(message):
-        if message.author == client.user:
-                return
+    	if message.author == client.user:
+        	return
 
-        await message.channel.send('[DELETED]{}: {}'.format(message.author.mention, message.content))
+    	await message.channel.send('[DELETED]{}: {}'.format(message.author.mention, message.content))
+async def on_message(msg):
+		if message.author == client.user:
+			return
+		if message.content.startwith('$!join'): 
+			await msg.author.voice.channel.connect()
+
+@client.event
+async def on_member_join(self, member):
+        guild = member.guild
+        if guild.system_channel is not None:
+            to_send = 'Welcome {0.mention} to {1.name}!'.format(member, guild)
+            await guild.system_channel.send(to_send)
                 
 client.run(str(os.environ.get('BOT_TOKEN')))
