@@ -7,7 +7,7 @@ client = discord.Client()
 async def on_ready():
         print('We heve logged in as {0.user}'.format(client))
         activity = discord.Game(name="$talk to me <3")
-    	await client.change_presence(status=discord.Status.idle, activity=activity)
+        await client.change_presence(status=discord.Status.idle, activity=activity)
 #Message on delete
 @client.event
 async def on_message_delete(message):
