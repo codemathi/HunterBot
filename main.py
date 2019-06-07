@@ -17,6 +17,6 @@ async def on_message(msg):
             #vc.play(discord.FFmpegPCMAudio(executable="C:/ffmreg/bin/ffmpeg.exe", source="C:/Users/Assil/Desktop/follow/testing.mp3"), after=lambda e: print('done', e), volume=100)
             #vc.is_playing()
         except:
-		await msg.channel.send("it's Exception man FIX MY CODE")   
+            await msg.channel.send("it's Exception man FIX MY CODE")
        
 client.run(str(os.environ.get('BOT_TOKEN')))
