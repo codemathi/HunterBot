@@ -16,6 +16,6 @@ async def on_message(msg):
             vc = await msg.author.voice.channel.connect()
             #vc.play(discord.FFmpegPCMAudio(executable="C:/ffmreg/bin/ffmpeg.exe", source="C:/Users/Assil/Desktop/follow/testing.mp3"), after=lambda e: print('done', e), volume=100)
             vc.is_playing()
-        except: print('Aint')   
+        except: await msg.channel.send('Aint')   
        
 client.run(str(os.environ.get('BOT_TOKEN')))
