@@ -14,7 +14,7 @@ async def on_message(msg):
     if msg.content.startswith('.move'):
         try:
             vc = await msg.author.voice.channel.connect()
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmreg/bin/ffmpeg.exe", source="C:/Users/Assil/Desktop/follow/testing.mp3"), after=lambda e: print('done', e), volume=100)
+            #vc.play(discord.FFmpegPCMAudio(executable="C:/ffmreg/bin/ffmpeg.exe", source="C:/Users/Assil/Desktop/follow/testing.mp3"), after=lambda e: print('done', e), volume=100)
             vc.is_playing()
         except: print('Aint')   
        
