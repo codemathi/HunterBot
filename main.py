@@ -6,17 +6,16 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('We heve logged in as {0.user}'.format(client))
-    activity = discord.Game(name="Beta BOT")
+    activity = discord.Game(name="Beta BOT v0.01")
     await client.change_presence(status=discord.Status.idle, activity=activity)
     
 @client.event
 async def on_message(msg):
-    if msg.content.startswith('.move'):
+    if msg.content.startswith('.move'):           
         try:
-            vc = await msg.author.voice.channel.connect()
-            #vc.play(discord.FFmpegPCMAudio(executable="C:/ffmreg/bin/ffmpeg.exe", source="C:/Users/Assil/Desktop/follow/testing.mp3"), after=lambda e: print('done', e), volume=100)
-            #vc.is_playing()
+            await msg.author.voice.channel.connect()
+            await msg.channel.send("Channel: " + msg.channel.name + "\nJoining...")
         except:
-            await msg.channel.send("it's Exception man FIX MY CODE")
+            await msg.channel.send("{} Join to channel first".format(msg.author.mention))
        
 client.run(str(os.environ.get('BOT_TOKEN')))
