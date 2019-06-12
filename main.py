@@ -68,8 +68,8 @@ def process_ui(H):
 async def on_message(msg):
     if msg.author == client.user:
     	return
+    process_ui(msg.content)
     if msg.channel.id == 588380686872739856:
-        process_ui(msg.content)
         await msg.channel.send(B)
     
 client.run(str(os.environ.get('BOT_TOKEN')))
