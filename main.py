@@ -72,14 +72,4 @@ async def on_message(msg):
         process_ui(msg.content)
         await msg.channel.send(B)
     
-create_table_request_list = [
-	'CREATE TABLE words(word TEXT UNIQUE)',
-     'CREATE TABLE sentences(sentence TEXT UNIQUE, used INT NOT NULL DEFAULT 0)',
-    'CREATE TABLE associations (word_id INT NOT NULL, sentence_id INT NOT NULL, weight REAL NOT NULL)',
-]
-for create_table_request in create_table_request_list:
-    try:
-        cursor.execute(create_table_request)
-    except: pass
-
 client.run(str(os.environ.get('BOT_TOKEN')))
