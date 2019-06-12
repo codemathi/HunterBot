@@ -17,7 +17,7 @@ cursor = connection.cursor()
 B = "Hello"
 @client.event
 async def on_ready():
-    activity = discord.Game(name="ALPHA V0")
+    activity = discord.Game(name="ALPHA V1")
     await client.change_presence(status=discord.Status.idle, activity=activity)
 
 def get_id(entityName, text):
@@ -68,12 +68,13 @@ def process_ui(H):
 async def on_message(msg):
     if msg.author == client.user:
     	return
-    process_ui(msg.content)
-    await msg.channel.send(B)
+    if msg.channel.id == '88380686872739856':
+        process_ui(msg.content)
+        await msg.channel.send(B)
     
 create_table_request_list = [
 	'CREATE TABLE words(word TEXT UNIQUE)',
-    'CREATE TABLE sentences(sentence TEXT UNIQUE, used INT NOT NULL DEFAULT 0)',
+     'CREATE TABLE sentences(sentence TEXT UNIQUE, used INT NOT NULL DEFAULT 0)',
     'CREATE TABLE associations (word_id INT NOT NULL, sentence_id INT NOT NULL, weight REAL NOT NULL)',
 ]
 for create_table_request in create_table_request_list:
