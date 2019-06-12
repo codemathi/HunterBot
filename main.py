@@ -17,7 +17,7 @@ cursor = connection.cursor()
 B = "Hello"
 @client.event
 async def on_ready():
-    activity = discord.Game(name="ALPHA")
+    activity = discord.Game(name="ALPHA V0")
     await client.change_presence(status=discord.Status.idle, activity=activity)
 
 def get_id(entityName, text):
