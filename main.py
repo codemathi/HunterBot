@@ -68,9 +68,10 @@ def process_ui(H):
 async def on_message(msg):
     if msg.author == client.user:
     	return
-    if msg.channel.id == '88380686872739856':
+    if msg.channel.id == 588380686872739856:
         process_ui(msg.content)
         await msg.channel.send(B)
+    await msg.channel.send(msg.channel.id)
     
 create_table_request_list = [
 	'CREATE TABLE words(word TEXT UNIQUE)',
