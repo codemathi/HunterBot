@@ -14,10 +14,10 @@ client = discord.Client()
 
 connection = sqlite3.connect('bot.sqlite')
 cursor = connection.cursor()
-
+B = "Hello"
 @client.event
 async def on_ready():
-    activity = discord.Game(name="alpha")
+    activity = discord.Game(name="ALPHA")
     await client.change_presence(status=discord.Status.idle, activity=activity)
 
 def get_id(entityName, text):
@@ -37,7 +37,8 @@ def get_words(text):
     wordsList = wordsRegexp.findall(text.lower())
     return Counter(wordsList).items()
 
-def process_ui(H):    
+def process_ui(H):
+    global B
     words = get_words(B)
     words_length = sum([n * len(word) for word, n in words])
     sentence_id = get_id('sentence', H)
@@ -63,20 +64,21 @@ def process_ui(H):
     cursor.execute('UPDATE sentences SET used=used+1 WHERE rowid=?', (row[0],))
     return B
 
-client.run(str(os.environ.get('BOT_TOKEN')))
+@client.event
+async def on_message(msg):
+    if msg.author == client.user:
+    	return
+    process_ui(msg.content)
+    await msg.channel.send(B)
+    
 create_table_request_list = [
 	'CREATE TABLE words(word TEXT UNIQUE)',
     'CREATE TABLE sentences(sentence TEXT UNIQUE, used INT NOT NULL DEFAULT 0)',
     'CREATE TABLE associations (word_id INT NOT NULL, sentence_id INT NOT NULL, weight REAL NOT NULL)',
 ]
-@client.event
-async def on_message(msg):
-    if msg.author == client.self:
-    	return
-    process_ui(msg.content)
-    await msg.channel.send('.')
-
 for create_table_request in create_table_request_list:
     try:
         cursor.execute(create_table_request)
     except: pass
+
+client.run(str(os.environ.get('BOT_TOKEN')))
