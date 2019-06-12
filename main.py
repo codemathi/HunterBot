@@ -74,6 +74,7 @@ async def on_message(msg):
     if msg.author == client.self:
     	return
     process_ui(msg.content)
+    await msg.channel.send('.')
 
 for create_table_request in create_table_request_list:
     try:
